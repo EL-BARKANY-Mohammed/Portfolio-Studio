@@ -1,0 +1,9 @@
+{
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_id": "78d5cce6-5cd2-492c-80fd-fb3c1e83652a",
+      "database_name": "portfolio-studio-db"
+    }
+  ]
+}
