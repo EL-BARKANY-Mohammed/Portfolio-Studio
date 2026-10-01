@@ -4,10 +4,10 @@ import hostingConfig from "./.openai/hosting.json";
 import { readExecutionProfile } from "./scripts/execution-profile.mjs";
 import { sites } from "./build/sites-vite-plugin";
 
-// Keep a single D1 binding in the generated dist/server/wrangler.json.
-// This is the existing portfolio-studio-db ID, not a password.
-const PORTFOLIO_DATABASE_ID = "67f9868c-1558-4bd3-acc6-20a3efee0d32";
-const { r2 } = hostingConfig;
+const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
+  "00000000-0000-4000-8000-000000000000";
+
+const { d1, r2 } = hostingConfig;
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
@@ -16,13 +16,15 @@ const managedLinux = readExecutionProfile() === "managed-linux";
 const localBindingConfig = {
   main: "vinext/server/fetch-handler",
   compatibility_flags: ["nodejs_compat"],
-  // TEAM_DOMAIN and POLICY_AUD are set on the Worker dashboard, not committed to Git.
-  keep_vars: true,
-  d1_databases: [{
-    binding: "DB",
-    database_name: "portfolio-studio-db",
-    database_id: PORTFOLIO_DATABASE_ID,
-  }],
+  d1_databases: d1
+    ? [
+        {
+          binding: d1,
+          database_name: "site-creator-d1",
+          database_id: SITE_CREATOR_PLACEHOLDER_DATABASE_ID,
+        },
+      ]
+    : [],
   r2_buckets: r2
     ? [
         {
