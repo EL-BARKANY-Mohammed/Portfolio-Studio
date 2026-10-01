@@ -54,17 +54,17 @@ Les dossiers `node_modules`, `dist`, `.wrangler` et `.sites-runtime` ne sont pas
 
 ## Modèle mathématique
 
-Pour des poids \(w\), un vecteur de rendements espérés \(\mu\) et une covariance \(\Sigma\) :
+Pour des poids $w$, un vecteur de rendements espérés $\mu$ et une covariance $\Sigma$ :
 
-\[
+$$
 E[R_p] = \mu^\top w, \qquad
 \sigma_p = \sqrt{w^\top\Sigma w}.
-\]
+$$
 
 Les frais de réallocation sont calculés par :
 
-\[
+$$
 \text{frais} = cW\sum_i |w_i-w_i^{(0)}|,
-\]
+$$
 
-où \(c\) est le taux de transaction, \(W\) la fortune et \(w^{(0)}\) l’allocation initiale.
+où $c$ est le taux de transaction, $W$ la fortune et $w^{(0)}$ l’allocation initiale.
